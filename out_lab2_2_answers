@@ -1,0 +1,25 @@
+
+Q1: (cin only) What happens when you run the code above? Explain why
+Answer Q1: The program accepted the value 10 and the fail flag was false. It also accepted 4.5 without failing, however assigned only integer 4 to val. 
+After that, it continued the loop without asking for more input. This happened because the program kept '.5' in the buffer and kept trying to assign it to val. 
+The compiler was unable to convert it to an integer and so kept val as 4.
+
+Q2: (cin + fail+ignore) What happens when you run the code above? Explain why.
+Answer Q2: Like before, the program accepted the value 10. It also accepted 4.5 and assigned just '4' to val, but the compiler cleared the buffer before continuing the loop. It allowed input for values abc and a but failed both times and then cleared the buffer again. 
+The new lines of code ignored the flag and cleared the cin buffer so that the program could accept more input.
+
+Q3: Is the problem of reading an integer value solved? Explain your reasoning.
+Answer Q3: No it is not because the program did not fail when 4.5 was entered. The compiler entered 4 but kept .5 in buffer.
+
+Q4: (getline only) What happens when you run the code above? Explain why.
+Answer Q4: The program works with input 10 and 4.5, but gets terminated with an error after input abc. 
+The getline function saves input from cin in a string and then stoi function tries to extract an integer from that string. 
+Since it can't extract an integer from abc, the compiler terminates the program because of the invalid argument error.
+
+Q5: (getline+stoi) What happens when you run the code above? Explain why.
+Answer Q5: The program uses getline and stoi like last time. However, when it produces an error, the program uses the catch block to capture and display that error. However, the val variable does 
+not get updated when an error is produced so val remains as 4 when abc and a are entered.
+
+Q6: Explain your method to validate integer values entered
+Answer Q6: With my method, the compiler saves the input from cin as a string and tests 
+if every character is a number. If this is true, it will show the correct message. If it detects a decimal point or letter, it will display the incorrect.

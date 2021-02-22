@@ -4,7 +4,8 @@
 
 #include <iostream>
 #include <vector>
-#include <fstream> 
+#include <fstream>
+#include <climits> 
 using namespace std;
 
 int main()
@@ -47,48 +48,48 @@ int main()
     cout << "Nr. characters left unred in cin buffer: " << s.length() << endl;
   
 
-    output_file << "\nQ1: (cin only) What happens when you run the code above? Explain why" << endl;
-    string answer = ""; // enter your answer in between ""
+    output_file << "\nQ1: (cin only) What happens when you run the code above? Explain why" << endl; 
+    string answer = "The program accepted the value 10 and the fail flag was false. It also accepted 4.5 without failing, however assigned only integer 4 to val. \nAfter that, it continued the loop without asking for more input. This happened because the program kept \'.5\' in the buffer and kept trying to assign it to val. \nThe compiler was unable to convert it to an integer and so kept val as 4."; // enter your answer in between ""
     output_file << "Answer Q1: " << answer << endl;
 
     cout << "\nCode for Q2 and Q3" << endl;
-    /* //uncomment when you get to Q2 and Q3
-    for (int i = 0; i < array_values.size(); i++)
-    {
-        cout << "\tEnter the value " << array_values.at(i) << endl;
-        cout << "\tEnter an int "; 
-        cin >> val;
-
-        cout << "\n\tCheck fail flag in cin " <<  cin.fail()<< endl;
-
-        string s; 
-        getline(cin,s); 
-        cout << "\tCheck what is left unread in the cin buffer: Length =" << s.length() 
-             << "\tString " << s << endl;
-
-        if (cin.fail())
+    //uncomment when you get to Q2 and Q3
+        for (int i = 0; i < array_values.size(); i++)
         {
-            cin.clear(); // clears the flags   
-            cin.ignore(INT_MAX,'\n'); // ignore all characters from cin until new line '\n'
-            cout << "\tERROR: The value you entered is not an integer. Try again." << endl;
-        }
+            cout << "\tEnter the value " << array_values.at(i) << endl;
+            cout << "\tEnter an int "; 
+            cin >> val;
+
+            cout << "\n\tCheck fail flag in cin " <<  cin.fail()<< endl;
+
+            string s; 
+            getline(cin,s); 
+            cout << "\tCheck what is left unread in the cin buffer: Length =" << s.length() 
+                << "\tString " << s << endl;
+
+            if (cin.fail())
+            {
+                cin.clear(); // clears the flags   
+                cin.ignore(INT_MAX,'\n'); // ignore all characters from cin until new line '\n'
+                cout << "\tERROR: The value you entered is not an integer. Try again." << endl;
+            }
+            
+            cout << "\tYou entered " << val << endl << endl;
+        }  
         
-        cout << "\tYou entered " << val << endl << endl;
-    }  
-    */
 
-    output_file << "\nQ2: (cin + fail+ignore) What happens when you run the code above? Explain why." << endl;
-    answer = ""; // enter your answer in between ""
-    output_file << "Answer Q2: " << answer << endl;
+        output_file << "\nQ2: (cin + fail+ignore) What happens when you run the code above? Explain why." << endl;
+        answer = "Like before, the program accepted the value 10. It also accepted 4.5 and assigned just \'4\' to val, but the compiler cleared the buffer before continuing the loop. It allowed input for values abc and a but failed both times and then cleared the buffer again. \nThe new lines of code ignored the flag and cleared the cin buffer so that the program could accept more input."; // enter your answer in between ""
+        output_file << "Answer Q2: " << answer << endl;
 
-    output_file << "\nQ3: Is the problem of reading an integer value solved? Explain your reasoning." << endl;
-    answer = ""; // enter your answer in between ""
-    output_file << "Answer Q3: " << answer << endl;
+        output_file << "\nQ3: Is the problem of reading an integer value solved? Explain your reasoning." << endl;
+        answer = "No it is not because the program did not fail when 4.5 was entered. The compiler entered 4 but kept .5 in buffer."; // enter your answer in between ""
+        output_file << "Answer Q3: " << answer << endl;
 
     cout << "\nCode for Q4" << endl;
     // uncomment when you get to Q4
-   /*
-    for (int i = 0; i < array_values.size(); i++)
+   
+    /*for (int i = 0; i < array_values.size(); i++)
     {
         cout << "\tEnter the value " << array_values.at(i) << endl;
         cout << "\tEnter an int "; 
@@ -98,10 +99,10 @@ int main()
         val = stoi(s);  // stoi = converts a string into an integer 
                             // read more at http://www.cplusplus.com/reference/string/stoi/?kw=stoi
         cout << "\tYou entered " << val << endl << endl;
-    }  
-*/
+    }  */
+
     output_file << "\nQ4: (getline only) What happens when you run the code above? Explain why." << endl;
-    answer = ""; // enter your answer in between ""
+    answer = "The program works with input 10 and 4.5, but gets terminated with an error after input abc. \nThe getline function saves input from cin in a string and then stoi function tries to extract an integer from that string. \nSince it can't extract an integer from abc, the compiler terminates the program because of the invalid argument error."; // enter your answer in between ""
     output_file << "Answer Q4: " << answer << endl;
 
     // Comment the for loop for Q4 above - leave the answer to Q4
@@ -124,7 +125,7 @@ int main()
         cout << "\tYou entered " << val << endl << endl;
     }
     output_file << "\nQ5: (getline+stoi) What happens when you run the code above? Explain why." << endl;
-    answer = ""; // enter your answer in between ""
+    answer = "The program uses getline and stoi like last time. However, when it produces an error, the program uses the catch block to capture and display that error. However, the val variable does \nnot get updated when an error is produced so val remains as 4 when abc and a are entered."; // enter your answer in between ""
     output_file << "Answer Q5: " << answer << endl;
 
     //6. Q6 Add code to enter integer values from the keyboard correctly = accept only 10, not 4.5, abc or a
@@ -132,16 +133,44 @@ int main()
     for (int i = 0; i < array_values.size(); i++)
     {
         cout << "\tEnter the value " << array_values.at(i) << endl;
-        cout << "\tEnter an int "; 
+        cout << "\tEnter an int ";
+        
+        string s;
 
+        bool isInt = true;
+
+        
         // add your code - it should ask you to type the value you see at line 134. 
-        // it should display "Correct 10 " when you enter 10; 
+        
+        getline(cin,s);
+        
+        for (char const &c: s) {
+
+           bool isDigit =  (c >= '0' && c <= '9');
+           isInt = isDigit;
+           
+           if (!isInt)
+            break;
+        }
+
+            // it should display "Correct 10 " when you enter 10; 
+            if (isInt) 
+                 cout << "\tCorrect " << s << endl << endl;
+
+                else 
+                 cout << "\tIncorrect " << s << endl << endl;
+               
+            
+
         // it should display "Incorrect ", followed by the value you entered, for the rest of of the values 
         // (4.5, abc or a) 
         // YOUR CODE NEEDS TO DETECT that 4.5 is not an integer
+            
+          
+        
     }
     output_file << "\nQ6: Explain your method to validate integer values entered" << endl;
-    answer = ""; // enter your answer in between ""
+    answer = "With my method, the compiler saves the input from cin as a string and tests \nif every character is a number. If this is true, it will show the correct message. If it detects a decimal point or letter, it will display the incorrect."; // enter your answer in between ""
     output_file << "Answer Q6: " << answer << endl;
     output_file.close();
 }
