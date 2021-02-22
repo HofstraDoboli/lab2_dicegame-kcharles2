@@ -1,1 +1,23 @@
-Welcome to my dice game. Enter 'y' to play or 'x' to cancel 
+Welcome to my dice game. Enter 'y' to play or 'x' to cancel You rolled a 1 and a 6. Your sum is: 7
+You win! Hooray!
+Would you like to play again? Enter 'y' to restart the game or 'x' to cancel You rolled a 2 and a 4. Your sum is: 6
+Roll again. Score a 6 to win.
+Enter 'y' You rolled a 1 and a 4. Your sum is: 5
+Roll again. Score a 6 to win.
+Enter 'y' You rolled a 5 and a 3. Your sum is: 8
+Roll again. Score a 6 to win.
+Enter 'y' You rolled a 1 and a 3. Your sum is: 4
+Roll again. Score a 6 to win.
+Enter 'y' You rolled a 6 and a 2. Your sum is: 8
+Roll again. Score a 6 to win.
+Enter 'y' You rolled a 1 and a 4. Your sum is: 5
+Roll again. Score a 6 to win.
+Enter 'y' You rolled a 4 and a 2. Your sum is: 6
+You win! Hooray!
+Would you like to play again? Enter 'y' to restart the game or 'x' to cancel You rolled a 2 and a 6. Your sum is: 8
+Roll again. Score a 8 to win.
+Enter 'y' You rolled a 6 and a 4. Your sum is: 10
+Roll again. Score a 8 to win.
+Enter 'y' You rolled a 3 and a 4. Your sum is: 7
+Oh no you lost!
+Would you like to play again? Enter 'y' to restart the game or 'x' to cancel 
